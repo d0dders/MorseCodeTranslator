@@ -55,7 +55,7 @@ namespace MorseCodeTranslator
         static void TextToMorse()
         {
             Console.Clear();
-            Console.Write("Enter text to translate: ");
+            Console.Write("Enter morse code to translate: ");
             string input = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(input))
             {
