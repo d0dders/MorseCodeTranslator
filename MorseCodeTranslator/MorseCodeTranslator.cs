@@ -82,7 +82,7 @@ namespace MorseCodeTranslator
                 }
                 catch (KeyNotFoundException)
                 {
-                    output.Add("!");
+                    output.Add("*?*");
                 }
             
             }
