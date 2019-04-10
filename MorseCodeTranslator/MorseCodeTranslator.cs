@@ -70,6 +70,17 @@ namespace MorseCodeTranslator
             {'Ü', "..--"}
         };
 
+        private static Dictionary<string, char> _morseToText = new Dictionary<string, char>();
+
+        static MorseCodeTranslator()
+        {
+            foreach (KeyValuePair<char, string> code in _textToMorse)
+            {
+                _morseToText.Add(code.Value, code.Key);
+            }
+        }
+
+
         public static string ToMorse(string input)
         {
             List<string> output = new List<string>(input.Length);
@@ -82,12 +93,34 @@ namespace MorseCodeTranslator
                 }
                 catch (KeyNotFoundException)
                 {
-                    output.Add("*?*");
+                    output.Add("!");
                 }
             
             }
 
             return string.Join(" ", output);
+        }
+
+        public static string ToText(string input)
+        {
+            string[] morseArray = input.Split(' ');
+            char[] output = new char[morseArray.Length];
+            for (int i = 0; i < morseArray.Length; i++)
+            {
+                try
+                {
+                    char character = _morseToText[morseArray[i]];
+                    output[i] = character;
+                }
+                catch (KeyNotFoundException)
+                {
+                    output[i] = '!';
+                }
+
+            }
+            string s = new string(output);
+
+            return s;
         }
     }
 }
